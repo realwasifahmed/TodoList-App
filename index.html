@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList - App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h2>Todo List</h2>
+            <div class="input-box">
+                <form id="form">
+                    <input type="text" id="task" placeholder="Enter Your Task">
+                    <button type="submit" onclick="create()">Add</button>
+                </form>
+            </div>
+            <div class="todolist-container">
+                <!-- All Data Will Come From This JavaSCript in order to find search "JavaScriptCRUD"  -->
+            </div>
+        </div>
+    </main>
+
+    
+
+
+    <script>
+
+        document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault();
+        });
+
+        let create = () => {
+            let task = document.getElementById('task').value;
+
+            if (task == "") {
+                alert('Please Fill First');
+
+            } else {
+                let tasksContainer = document.querySelector('.todolist-container');
+                let div = document.createElement('div');
+                let p = document.createElement('p');
+                let i = document.createElement('i');
+                i.classList.add('fa', 'fa-times');
+
+                p.textContent = task;
+
+                div.appendChild(p);
+                div.appendChild(i);
+                tasksContainer.appendChild(div);
+
+                i.addEventListener('click', () => {
+                    div.remove();
+                    tasks = tasks.filter(item => item !== task);
+                    saveTasksToLocalStorage(tasks);
+                });
+
+                document.getElementById('task').value = "";
+            }
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>
